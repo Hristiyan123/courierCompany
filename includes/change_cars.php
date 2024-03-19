@@ -26,5 +26,4 @@ if (isset($_POST['submitChanges'])) {
     } else {
         echo "Please enter both courier ID and car ID.";
     }
-}
-?>
+};
