@@ -1,27 +1,26 @@
-<?php 
+<?php
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST["username"];
     $pwd = $_POST["pwd"];
 
     try {
         require_once "dbh.inc.php";
-
         $user_cookie = 'user_cookie';
         session_name($user_cookie);
 
-        $query = "SELECT * FROM users WHERE username = :username AND pwd = :pwd;";
+        $query = "SELECT * FROM users ORDER BY username;";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":pwd", $pwd);
         $stmt->execute();
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount() > 0) {
-            include_once 'config.php';
-            
+        $result = binarySearch($users, $username, 'username');
+
+        if ($result !== false && $users[$result]['pwd'] === $pwd) {
             header("Location: ../dashboard/users_dashboard.php");
             exit();
         } else {
-            header("Location: ..user_login.php");
+            header("Location: ../users_login.php");
             exit();
         }
 
@@ -31,4 +30,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 } else {
     header("Location: ../users_login.php");
     exit();
-}
+};
+
+function binarySearch($arr, $searchValue, $key) {
+    $left = 0;
+    $right = count($arr) - 1;
+
+    while ($left <= $right) {
+        $mid = floor(($left + $right) / 2);
+        
+        if ($arr[$mid][$key] == $searchValue) {
+            return $mid;
+        }
+
+        if ($arr[$mid][$key] < $searchValue) {
+            $left = $mid + 1;
+        } else {
+            $right = $mid - 1;
+        }
+    }
+
+    return false;
+};

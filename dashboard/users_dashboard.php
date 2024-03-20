@@ -1,7 +1,25 @@
 <?php
 include_once 'C:/xampp/htdocs/EVROPUT-2000/includes/config.php';
+?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../ajax_communication/ajax_places_list.js"></script>
+</head>
+<body>
 
+<form class="searchform" action="" method="post">
+    <label for="search">Search for city:</label>
+    <input id="search" type="text" name="placeSearch" placeholder="Search for city">
+    <button type="submit">Search</button>
+</form>
+
+<?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $placeSearch = $_POST["placeSearch"];
 
@@ -25,26 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } catch (PDOException $e) {
         die("Query failed: " . $e->getMessage());
     }
-};
 
-?>
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-<form class="searchform" action="" method="post">
-    <label for="search">Search for city:</label>
-    <input id="search" type="text" name="placeSearch" placeholder="Search for city">
-    <button>Search</button>
-
-    <?php
     if (empty($results)) {
         echo "<div>";
         echo "<p>No results</p>";
@@ -59,8 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<p>" . htmlspecialchars($result["working_hours"]) . "</p>";
         }
         echo "</div>";
-    };
-    ?>
+    }
+}
+?>
+
 </body>
 </html>
-

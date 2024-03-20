@@ -6,19 +6,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         require_once "dbh.inc.php";
+        $user_cookie = 'user_cookie';
+        session_name($user_cookie);
 
-        $query = "SELECT * FROM couriers WHERE username = :username AND pwd = :pwd;";
+        $query = "SELECT * FROM couriers ORDER BY username;";
         $stmt = $pdo->prepare($query);
-        $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":pwd", $pwd);
         $stmt->execute();
+        $couriers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($stmt->rowCount() > 0) {
+        $result = binarySearch($couriers, $username, 'username');
+
+        if ($result !== false && $couriers[$result]['pwd'] === $pwd) {
             header("Location: ../dashboard/courier_dashboard.php");
             exit();
         } else {
- 
-            header("Location: ../couriers_login_formhandler.inc.php");
+            header("Location: ../couriers_login.php");
             exit();
         }
 
@@ -26,7 +28,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Query failed: " . $th->getMessage());
     }
 } else {
-    header("Location: ../couriers_login_formhandler.inc.php");
+    header("Location: ../couriers_login.php");
     exit();
-}
-?>
+};
+
+function binarySearch($arr, $searchValue, $key) {
+    $left = 0;
+    $right = count($arr) - 1;
+
+    while ($left <= $right) {
+        $mid = floor(($left + $right) / 2);
+        
+        if ($arr[$mid][$key] == $searchValue) {
+            return $mid;
+        }
+
+        if ($arr[$mid][$key] < $searchValue) {
+            $left = $mid + 1;
+        } else {
+            $right = $mid - 1;
+        }
+    }
+
+    return false;
+};
