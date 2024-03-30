@@ -1,7 +1,7 @@
 <?php
-include_once 'C:/xampp/htdocs/EVROPUT-2000/includes/config.php';
-include_once 'C:/xampp/htdocs/EVROPUT-2000/includes/change_cars.php';
-include_once 'C:/xampp/htdocs/EVROPUT-2000/includes/delete_couriers_from_cars.php';
+include_once 'C:/xampp/htdocs/courierCompany/includes/config.php';
+include_once 'C:/xampp/htdocs/courierCompany/includes/change_cars.php';
+include_once 'C:/xampp/htdocs/courierCompany/includes/delete_couriers_from_cars.php';
 ?>
 
 <!DOCTYPE html>

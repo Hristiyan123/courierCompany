@@ -1,10 +1,12 @@
 <?php
 require_once "dbh.inc.php";
 
-$query = "SELECT c.*, o.office_name, co.first_name AS courier_first_name, co.last_name AS courier_last_name
+$query = "SELECT c.*, o.office_name, co.first_name AS courier_first_name, co.last_name AS courier_last_name,
+                  co2.first_name AS last_used_courier_first_name, co2.last_name AS last_used_courier_last_name
           FROM cars c
           JOIN offices o ON c.office_id = o.office_id
-          LEFT JOIN couriers co ON c.courier_id = co.courier_id;";
+          LEFT JOIN couriers co ON c.courier_id = co.courier_id
+          LEFT JOIN couriers co2 ON c.last_used_courier_id = co2.courier_id;";
 
 $stmt = $pdo->prepare($query);
 $stmt->execute();
@@ -23,6 +25,7 @@ if (empty($cars)) {
                 <th>Fuel Consumption</th>
                 <th>Office Name</th>
                 <th>Courier</th>
+                <th>Last used by</th>
             </tr>";
 
     foreach ($cars as $car) {
@@ -34,6 +37,7 @@ if (empty($cars)) {
                 <td>{$car['fuel_consumption']}</td>
                 <td>{$car['office_name']}</td>
                 <td>{$car['courier_first_name']} {$car['courier_last_name']}</td>
+                <td>{$car['last_used_courier_first_name']} {$car['last_used_courier_id']}</td>
             </tr>";
     }
 
