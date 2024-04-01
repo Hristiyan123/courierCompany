@@ -1,4 +1,12 @@
 <?php
+if (isset($_POST['removeFromCar'])) {
+    echo '<form class="searchform" method="post">
+    <label for="removeCourierFromCar">Remove courier from car id:</label>
+    <input id="removeCourierFromCar" type="text" name="carId" placeholder="car id:">
+    <button type="submit" name="submitRemove">Submit</button>
+    </form>';
+};
+
 if (isset($_POST['submitRemove'])) {
 
     if (isset($_POST['carId'])) {

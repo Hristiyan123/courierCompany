@@ -1,8 +1,17 @@
 <?php
+if (isset($_POST['changeCars'])) {
+    echo '<form id="changeCourierForm" class="searchform" method="post">   
+        <label for="changeCourier">Insert courier id:</label>
+        <input id="changeCourier" type="text" name="CourierId" placeholder="Courier">
+        <p>To</p>
+        <label for="changeCar">Car id:</label>
+        <input id="changeCar" type="text" name="CarId" placeholder="Car">
+        <button type="submit" name="submitChanges" id="submitChanges">Submit</button>
+    </form>';
+};
+
 if (isset($_POST['submitChanges'])) {
-
     if (isset($_POST['CourierId'], $_POST['CarId'])) {
-
         $courierId = $_POST['CourierId'];
         $carId = $_POST['CarId'];
 
@@ -15,7 +24,7 @@ if (isset($_POST['submitChanges'])) {
             $stmt->bindParam(':carId', $carId, PDO::PARAM_INT);
             $stmt->execute();
 
-            echo "Courier for car with ID {$carId} changed to courier with ID {$courierId}";
+            // Тук може да добавите други операции след успешната промяна на данните
 
             $pdo = null;
             $stmt = null;
@@ -27,3 +36,4 @@ if (isset($_POST['submitChanges'])) {
         echo "Please enter both courier ID and car ID.";
     }
 };
+?>
