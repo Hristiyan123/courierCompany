@@ -12,6 +12,8 @@ include_once 'C:/xampp/htdocs/courierCompany/includes/delete_couriers_from_cars.
     <title>Courier Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="../ajax_communication/ajax_car_list.js"></script>
+    <script src="../ajax_communication/ajax_change_cars.js"></script>
+    <script src="../ajax_communication/ajax_remove_courier.js"></script>
 </head>
 <body>
 
@@ -21,34 +23,19 @@ include_once 'C:/xampp/htdocs/courierCompany/includes/delete_couriers_from_cars.
 
 <div id="carListContainer"></div>
 
-<form method="post">
+<form id="showChangeForm" method="post">
     <button type="submit" name="changeCars">Change</button>
 </form>
 
-<form action="" method="post">
-            <button type="submit" name="removeFromCar">Remove courier From car</button>
-</form>';
+<div class="changeCarsContainer"></div>
 
-<?php
-if (isset($_POST['changeCars'])) {
-    echo '<form class="searchform" method="post">
-        <label for="changeCourier">Insert courier id:</label>
-        <input id="changeCourier" type="text" name="CourierId" placeholder="Courier">
-        <p>To</p>
-        <label for="changeCar">Car id:</label>
-        <input id="changeCar" type="text" name="CarId" placeholder="Car">
-        <button type="submit" name="submitChanges" id="submitChanges">Submit</button>
-    </form>';
-};
+<form id="showDeleteForm" method="post">
+    <button type="submit" name="removeFromCar">Remove courier From car</button>
+</form>
 
-if (isset($_POST['removeFromCar'])) {
-    echo '<form class="searchform" action="" method="post">
-    <label for="removeCourierFromCar">Remove courier from car id:</label>
-    <input id="removeCourierFromCar" type="text" name="carId" placeholder="car id:">
-    <button type="submit" name="submitRemove">Submit</button>
-    </form>';
-};
-?>
+<div class="deleteCourierFromCar"></div>
+
+
 
 </body>
 </html>
