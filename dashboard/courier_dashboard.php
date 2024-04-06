@@ -35,6 +35,11 @@ include_once 'C:/xampp/htdocs/courierCompany/includes/delete_couriers_from_cars.
 
 <div class="deleteCourierFromCar"></div>
 
+<form action="insert_data/inserting.php">
+    <button type="submit">Go to Inserting Page</button>
+</form>
+
+
 
 
 </body>
