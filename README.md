@@ -1,3 +1,5 @@
+Before we begin with the setup, I must mention that this project does not prioritize design aesthetics, but rather functionality.
+
 Hello, for this project i use xampp for my local server. My SQL is locatet in C:\xampp\mysql\data\courierCompany.
 
 In this project i use:
@@ -19,5 +21,7 @@ Folder "includes": The contents of this folder include all requests to the datab
 "includes/config.php": The contents here are related to cookies.
 
 Folder: "ajax_communication": Code for dynamic content loading.
+
+\dashboard\insert_data\inserting.php: Code for adding places, offices and cars.
 
 
