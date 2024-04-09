@@ -22,7 +22,7 @@ if (empty($cars)) {
                 <th>Brand</th>
                 <th>Model</th>
                 <th>Registration Number</th>
-                <th>Fuel Consumption</th>
+                <th>Fuel Consumation</th>
                 <th>Office Name</th>
                 <th>Courier</th>
                 <th>Last used by</th>
@@ -30,14 +30,14 @@ if (empty($cars)) {
 
     foreach ($cars as $car) {
         echo "<tr>
-                <td>{$car['car_id']}</td>
-                <td>{$car['brand']}</td>
-                <td>{$car['model']}</td>
-                <td>{$car['registration_number']}</td>
-                <td>{$car['fuel_consumption']}</td>
-                <td>{$car['office_name']}</td>
-                <td>{$car['courier_first_name']} {$car['courier_last_name']}</td>
-                <td>{$car['last_used_courier_first_name']} {$car['last_used_courier_id']}</td>
+            <td>" . htmlspecialchars($car['car_id']) . "</td>
+            <td>" . htmlspecialchars($car['brand']) . "</td>
+            <td>" . htmlspecialchars($car['model']) . "</td>
+            <td>" . htmlspecialchars($car['registration_number']) . "</td>
+            <td>" . htmlspecialchars($car['fuel_consumation']) . "</td>
+            <td>" . htmlspecialchars($car['office_name']) . "</td>
+            <td>" . htmlspecialchars($car['courier_first_name']) . " " . htmlspecialchars($car['courier_last_name']) . "</td>
+            <td>" . htmlspecialchars($car['last_used_courier_first_name']) . " " . htmlspecialchars($car['last_used_courier_id']) . "</td>
             </tr>";
     }
 

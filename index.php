@@ -11,9 +11,10 @@
     <h3>SignUp</h3>
 
     <form action="includes/formhandler.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username">
-        <input type="password" name="pwd" placeholder="Password">
-        <input type="text" name="email" placeholder="E-mail">
+    <input type="text" name="username" placeholder="<?php echo htmlspecialchars("Username"); ?>">
+    <input type="password" name="pwd" placeholder="<?php echo htmlspecialchars("Password"); ?>">
+    <input type="text" name="email" placeholder="<?php echo htmlspecialchars("E-mail"); ?>">
+
         <button type="submit">SignUp</button>
     </form>
 

@@ -6,12 +6,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwd = $_POST["pwd"];
     $first_name = $_POST["first_name"];
     $last_name = $_POST["last_name"];
+    $office_id = $_POST["office_id"];
 
     try {
         require_once "dbh.inc.php";
 
-        $query = "INSERT INTO couriers (username, phone_number, pwd, first_name, last_name) VALUES 
-        (:username, :phone_number, :pwd, :first_name, :last_name);";
+        $query = "INSERT INTO couriers (username, phone_number, pwd, first_name, last_name, office_id) VALUES 
+        (:username, :phone_number, :pwd, :first_name, :last_name, :office_id);";
 
         $stmt = $pdo->prepare($query);
 
@@ -20,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->bindParam(":pwd", $pwd);
         $stmt->bindParam(":first_name", $first_name);
         $stmt->bindParam(":last_name", $last_name);
+        $stmt->bindParam(":office_id", $office_id);
 
         $stmt->execute();
 

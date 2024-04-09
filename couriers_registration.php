@@ -10,12 +10,15 @@
     <h3>SingUp for courier</h3>
 
     <form action="includes/couriers_formhandler.inc.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="text" name="phone_number" placeholder="Number" required>
-        <input type="password" name="pwd" placeholder="Password" required>
-        <input type="text" name="first_name" placeholder="First name" required>
-        <input type="text" name="last_name" placeholder="Last name" required>
-        <button type="submit">Register as Courier</button>
+
+    <input type="text" name="username" placeholder="<?php echo htmlspecialchars("Username"); ?>" required>
+    <input type="text" name="phone_number" placeholder="<?php echo htmlspecialchars("Number"); ?>" required>
+    <input type="password" name="pwd" placeholder="<?php echo htmlspecialchars("Password"); ?>" required>
+    <input type="text" name="first_name" placeholder="<?php echo htmlspecialchars("First name"); ?>" required>
+    <input type="text" name="last_name" placeholder="<?php echo htmlspecialchars("Last name"); ?>" required>
+    <input type="text" name="office_id" placeholder="<?php echo htmlspecialchars("office_id"); ?>" required>
+
+    <button type="submit">Register as Courier</button>
     </form>
 
     <a href="couriers_login.php">You already have an account?</a>

@@ -24,7 +24,6 @@ if (isset($_POST['submitChanges'])) {
             $stmt->bindParam(':carId', $carId, PDO::PARAM_INT);
             $stmt->execute();
 
-            // Тук може да добавите други операции след успешната промяна на данните
 
             $pdo = null;
             $stmt = null;
