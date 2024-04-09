@@ -28,6 +28,7 @@
     user_id INT AUTO_INCREMENT,
     username VARCHAR(100),
     pwd CHAR(60),
+    email VARCHAR(100)
     PRIMARY KEY(user_id)
 );
 
@@ -61,8 +62,7 @@ CREATE TABLE places_offices (
 
 
 CREATE TABLE couriers (
-    courier_id INT AUTO_INCREMENT NOT NULL ,
-    personal_number VARCHAR(20),
+    courier_id INT AUTO_INCREMENT NOT NULL,
     username VARCHAR(100),
     pwd CHAR(60),
     first_name VARCHAR(50),
