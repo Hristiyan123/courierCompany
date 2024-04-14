@@ -5,6 +5,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $pwd = $_POST["pwd"];
     $email = $_POST["email"];
 
+    //hashing pwd
+
+    $options = [
+        'cost' => 12
+    ];
+
+    $hashed_password = password_hash($raw_password, PASSWORD_DEFAULT, $options);
+
     try {
         require_once "dbh.inc.php";
 
@@ -15,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // bindParam params with user input
         $stmt->bindParam(":username", $username);
-        $stmt->bindParam(":pwd", $pwd);
+        $stmt->bindParam(":pwd", $hashed_password);
         $stmt->bindParam(":email", $email);
         $stmt->execute();
 
